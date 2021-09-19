@@ -10,7 +10,38 @@ module.exports = function (app) {
   };
 
   // Initialize our service with any options it requires
-  app.use('/assets', new Assets(options, app));
+  const assets = new Assets(options, app);
+  assets.docs = {
+    description: 'Service untuk entitas divisi',
+    definitions: {
+      assets_list: {
+        $ref: '#/definitions/assets'
+      },
+      assets: {
+        type: 'object',
+        required: [],
+        properties: {
+          quantity: {
+            type: 'string',
+            description: 'Nama divisi'
+          },
+          division_id: {
+            type: 'integer',
+            description: 'ID divisi'
+          },
+          type_id: {
+            type: 'integer',
+            description: 'ID tipe'
+          },
+          created_by_id: {
+            type: 'integer',
+            description: 'ID pengguna pembuat'
+          }
+        }
+      }
+    }
+  };
+  app.use('/assets', assets);
 
   // Get our initialized service so that we can register hooks
   const service = app.service('assets');

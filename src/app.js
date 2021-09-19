@@ -9,6 +9,7 @@ const feathers = require('@feathersjs/feathers');
 const configuration = require('@feathersjs/configuration');
 const express = require('@feathersjs/express');
 const socketio = require('@feathersjs/socketio');
+const swagger = require('feathers-swagger');
 
 
 const middleware = require('./middleware');
@@ -35,6 +36,17 @@ app.use(express.urlencoded({ extended: true }));
 app.use(favicon(path.join(app.get('public'), 'favicon.ico')));
 // Host the public folder
 app.use('/', express.static(app.get('public')));
+
+app.configure(swagger({
+  specs: {
+    info: {
+      title: 'Dokumentasi Aset API',
+      description: 'Dokumentasi untuk backend aset',
+      version: '1.0.0'
+    }
+  },
+  uiIndex: true
+}));
 
 // Set up Plugins and providers
 app.configure(express.rest());

@@ -10,7 +10,26 @@ module.exports = function (app) {
   };
 
   // Initialize our service with any options it requires
-  app.use('/transfer-types', new TransferTypes(options, app));
+  const transferTypes = new TransferTypes(options, app);
+  transferTypes.docs = {
+    description: 'Service untuk entitas tipe transfer',
+    definitions: {
+      'transfer-types_list': {
+        $ref: '#/definitions/transfer_types'
+      },
+      transfer_types: {
+        type: 'object',
+        required: [],
+        properties: {
+          name: {
+            type: 'string',
+            description: 'Nama tipe transfer'
+          }
+        }
+      }
+    }
+  };
+  app.use('/transfer-types', transferTypes);
 
   // Get our initialized service so that we can register hooks
   const service = app.service('transfer-types');

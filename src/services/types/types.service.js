@@ -10,7 +10,42 @@ module.exports = function (app) {
   };
 
   // Initialize our service with any options it requires
-  app.use('/types', new Types(options, app));
+  const types = new Types(options, app);
+  types.docs = {
+    description: 'Service untuk entitas pengguna',
+    definitions: {
+      types_list: {
+        $ref: '#/definitions/types'
+      },
+      types: {
+        type: 'object',
+        required: [],
+        properties: {
+          code: {
+            type: 'string',
+            description: 'Kode tipe'
+          },
+          name: {
+            type: 'string',
+            description: 'Nama tipe'
+          },
+          price: {
+            type: 'integer',
+            description: 'Harga tipe'
+          },
+          specifications: {
+            type: 'object',
+            description: 'Spesifikasi tipe'
+          },
+          attributes: {
+            type: 'object',
+            description: 'Atribut tipe'
+          }
+        }
+      }
+    }
+  };
+  app.use('/types', types);
 
   // Get our initialized service so that we can register hooks
   const service = app.service('types');

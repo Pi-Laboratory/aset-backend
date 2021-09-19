@@ -10,7 +10,26 @@ module.exports = function (app) {
   };
 
   // Initialize our service with any options it requires
-  app.use('/divisions', new Divisions(options, app));
+  const divisions = new Divisions(options, app);
+  divisions.docs = {
+    description: 'Service untuk entitas divisi',
+    definitions: {
+      'transfer-types_list': {
+        $ref: '#/definitions/divisions'
+      },
+      divisions: {
+        type: 'object',
+        required: [],
+        properties: {
+          name: {
+            type: 'string',
+            description: 'Nama divisi'
+          }
+        }
+      }
+    }
+  };
+  app.use('/divisions', divisions);
 
   // Get our initialized service so that we can register hooks
   const service = app.service('divisions');
