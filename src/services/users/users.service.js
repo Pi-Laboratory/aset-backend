@@ -31,7 +31,7 @@ module.exports = function (app) {
           },
           type: {
             type: 'string',
-            description: 'Tipe pengguna'
+            description: 'Tipe pengguna (admin, manager, division)'
           }
         }
       }
