@@ -1,10 +1,11 @@
+const parseQuery = require('./hooks/parse-query');
 // Application hooks that run for every service
 
 module.exports = {
   before: {
     all: [],
-    find: [],
-    get: [],
+    find: [parseQuery()],
+    get: [parseQuery()],
     create: [],
     update: [],
     patch: [],
