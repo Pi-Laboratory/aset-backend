@@ -36,6 +36,10 @@ module.exports = function (app) {
           type: {
             type: 'string',
             description: 'Tipe pengguna (admin, manager, division)'
+          },
+          division_id: {
+            type: 'integer',
+            description: 'ID divisi'
           }
         }
       }

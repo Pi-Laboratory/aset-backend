@@ -11,6 +11,15 @@ module.exports = function (app) {
       allowNull: false,
       autoIncrement: true,
       primaryKey: true
+    },
+    approved: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: false
+    },
+    quantity: {
+      type: DataTypes.INTEGER,
+      allowNull: false
     }
   }, {
     hooks: {
@@ -26,6 +35,8 @@ module.exports = function (app) {
     transfers.belongsTo(models.assets, { onDelete: 'cascade' });
     transfers.belongsTo(models.divisions, { onDelete: 'cascade', as: 'from' });
     transfers.belongsTo(models.divisions, { onDelete: 'cascade', as: 'to' });
+    transfers.belongsTo(models.users, { onDelete: 'cascade', as: 'created_by' });
+    transfers.belongsTo(models.users, { onDelete: 'cascade', as: 'approved_by' });
   };
 
   return transfers;

@@ -21,6 +21,14 @@ module.exports = function (app) {
         type: 'object',
         required: [],
         properties: {
+          approved: {
+            type: 'boolean',
+            description: 'Status diterima'
+          },
+          quantity: {
+            type: 'integer',
+            description: 'Jumlah transfer'
+          },
           transfer_type_id: {
             type: 'integer',
             description: 'ID tipe transfer'
@@ -36,6 +44,14 @@ module.exports = function (app) {
           to_id: {
             type: 'integer',
             description: 'ID divisi tujuan'
+          },
+          created_by_id: {
+            type: 'integer',
+            description: 'ID pengguna pembuat'
+          },
+          approved_by_id: {
+            type: 'integer',
+            description: 'ID pengguna penerima'
           }
         }
       }

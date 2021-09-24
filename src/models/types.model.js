@@ -22,7 +22,7 @@ module.exports = function (app) {
       type: DataTypes.JSONB,
       allowNull: false
     },
-    attributes: {
+    properties: {
       type: DataTypes.JSONB,
       allowNull: false
     }

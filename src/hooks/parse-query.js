@@ -4,13 +4,17 @@
 // eslint-disable-next-line no-unused-vars
 module.exports = (options = {}) => {
   return async context => {
-    const sequelize = context.app.get('sequelizeClient');
-    const query = context.params.query;
-    context.params.sequelize = {
-      include: typeof query.$include === 'object' ? query.$include.map((include) => buildIncludes(include, sequelize.models)) : [],
-      raw: false
-    };
-    delete context.params.query.$include;
+    if (context.params.provider === 'rest') {
+      const sequelize = context.app.get('sequelizeClient');
+      const query = context.params.query;
+      if (typeof query.$include === 'object') {
+        context.params.sequelize = {
+          include: typeof query.$include === 'object' ? query.$include.map((include) => buildIncludes(include, sequelize.models)) : undefined,
+          raw: false
+        };
+        delete context.params.query.$include;
+      }
+    }
     return context;
   };
 };
