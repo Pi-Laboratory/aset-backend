@@ -10,6 +10,7 @@ module.exports = function (app) {
       underscored: true,
       raw: false
     },
+
   });
   const oldSetup = app.setup;
 
@@ -27,7 +28,7 @@ module.exports = function (app) {
     });
 
     // Sync to the database
-    app.set('sequelizeSync', sequelize.sync());
+    app.set('sequelizeSync', sequelize.sync({ force: false }));
 
     return result;
   };

@@ -5,7 +5,7 @@ const DataTypes = Sequelize.DataTypes;
 
 module.exports = function (app) {
   const sequelizeClient = app.get('sequelizeClient');
-  const divisions = sequelizeClient.define('divisions', {
+  const rooms = sequelizeClient.define('rooms', {
     name: {
       type: DataTypes.STRING,
       allowNull: false
@@ -19,9 +19,10 @@ module.exports = function (app) {
   });
 
   // eslint-disable-next-line no-unused-vars
-  divisions.associate = function (models) {
-    divisions.hasMany(models.assets, { onDelete: 'cascade' });
+  rooms.associate = function (models) {
+    rooms.hasMany(models.assets, { onDelete: 'cascade' });
+    rooms.belongsTo(models.majors, { onDelete: 'cascade' });
   };
 
-  return divisions;
+  return rooms;
 };

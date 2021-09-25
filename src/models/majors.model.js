@@ -5,26 +5,11 @@ const DataTypes = Sequelize.DataTypes;
 
 module.exports = function (app) {
   const sequelizeClient = app.get('sequelizeClient');
-  const users = sequelizeClient.define('users', {
-
+  const majors = sequelizeClient.define('majors', {
     name: {
       type: DataTypes.STRING,
-      allowNull: false,
-    },
-    username: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      unique: true
-    },
-    password: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
-    type: {
-      type: DataTypes.ENUM(['admin', 'manager', 'division']),
       allowNull: false
     }
-
   }, {
     hooks: {
       beforeCount(options) {
@@ -34,9 +19,10 @@ module.exports = function (app) {
   });
 
   // eslint-disable-next-line no-unused-vars
-  users.associate = function (models) {
-    users.belongsTo(models.rooms, { onDelete: 'cascade' });
+  majors.associate = function (models) {
+    // Define associations here
+    // See http://docs.sequelizejs.com/en/latest/docs/associations/
   };
 
-  return users;
+  return majors;
 };

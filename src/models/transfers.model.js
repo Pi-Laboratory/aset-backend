@@ -20,6 +20,14 @@ module.exports = function (app) {
     quantity: {
       type: DataTypes.INTEGER,
       allowNull: false
+    },
+    type: {
+      type: DataTypes.ENUM(['good', 'mild', 'severe']),
+      allowNull: false
+    },
+    description: {
+      type: DataTypes.TEXT,
+      allowNull: true
     }
   }, {
     hooks: {
@@ -33,8 +41,8 @@ module.exports = function (app) {
   transfers.associate = function (models) {
     transfers.belongsTo(models.transfer_types, { onDelete: 'cascade' });
     transfers.belongsTo(models.assets, { onDelete: 'cascade' });
-    transfers.belongsTo(models.divisions, { onDelete: 'cascade', as: 'from' });
-    transfers.belongsTo(models.divisions, { onDelete: 'cascade', as: 'to' });
+    transfers.belongsTo(models.rooms, { onDelete: 'cascade', as: 'from' });
+    transfers.belongsTo(models.rooms, { onDelete: 'cascade', as: 'to' });
     transfers.belongsTo(models.users, { onDelete: 'cascade', as: 'created_by' });
     transfers.belongsTo(models.users, { onDelete: 'cascade', as: 'approved_by' });
   };

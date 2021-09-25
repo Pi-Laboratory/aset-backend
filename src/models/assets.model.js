@@ -6,9 +6,20 @@ const DataTypes = Sequelize.DataTypes;
 module.exports = function (app) {
   const sequelizeClient = app.get('sequelizeClient');
   const assets = sequelizeClient.define('assets', {
-    quantity: {
+    quantity_good: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: false,
+      defaultValue: 0
+    },
+    quantity_mild: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      defaultValue: 0
+    },
+    quantity_severe: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      defaultValue: 0
     }
   }, {
     hooks: {
@@ -21,7 +32,7 @@ module.exports = function (app) {
   // eslint-disable-next-line no-unused-vars
   assets.associate = function (models) {
     assets.belongsTo(models.users, { onDelete: 'cascade', as: 'created_by' });
-    assets.belongsTo(models.divisions, { onDelete: 'cascade' });
+    assets.belongsTo(models.rooms, { onDelete: 'cascade' });
   };
 
   return assets;

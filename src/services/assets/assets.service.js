@@ -21,11 +21,19 @@ module.exports = function (app) {
         type: 'object',
         required: [],
         properties: {
-          quantity: {
-            type: 'string',
-            description: 'Nama divisi'
+          quantity_good: {
+            type: 'integer',
+            description: 'Jumlah (keadaan baik)'
           },
-          division_id: {
+          quantity_mild: {
+            type: 'integer',
+            description: 'Jumlah (keadaan rusak ringan)'
+          },
+          quantity_severe: {
+            type: 'integer',
+            description: 'Jumlah (keadaan rusak berat)'
+          },
+          room_id: {
             type: 'integer',
             description: 'ID divisi'
           },

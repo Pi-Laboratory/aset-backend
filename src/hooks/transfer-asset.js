@@ -11,28 +11,31 @@ module.exports = (options = {}) => {
     const toAsset = (await assets.find({
       query: {
         type_id: fromAsset.type_id,
-        division_id: result.to_id
+        room_id: result.to_id
       }
     })).data[0];
+    const qType = result.type;
+
     if (data.approved) {
       if (toAsset) {
         await assets.patch(toAsset.id, {
-          quantity: toAsset.quantity + result.quantity
+          [`quantity_${qType}`]: toAsset[`quantity_${qType}`] + result.quantity
         });
       } else {
         await assets.create({
-          division_id: result.to_id,
-          quantity: result.quantity,
+          room_id: result.to_id,
+          [`quantity_${qType}`]: result.quantity,
           type_id: fromAsset.type_id
         });
       }
       await assets.patch(fromAsset.id, {
-        quantity: fromAsset.quantity - result.quantity
+        [`quantity_${qType}`]: fromAsset[`quantity_${qType}`] - result.quantity
       });
       await transfers.patch(result.id, {
         approved_by_id: user.id
       });
     }
+
     return context;
   };
 };
