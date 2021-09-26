@@ -31,6 +31,7 @@ module.exports = function (app) {
 
   // eslint-disable-next-line no-unused-vars
   assets.associate = function (models) {
+    assets.belongsTo(models.types, { onDelete: 'cascade' });
     assets.belongsTo(models.users, { onDelete: 'cascade', as: 'created_by' });
     assets.belongsTo(models.rooms, { onDelete: 'cascade' });
   };
