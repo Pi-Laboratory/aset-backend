@@ -19,7 +19,7 @@ module.exports = (options = {}) => {
         delete context.params.query.$distinct;
       }
     }
-    if (!context.params.provider)
+    if (context.params.provider !== 'rest' && context.params.provider !== 'socketio')
       delete context.params.sequelize;
 
     return context;
