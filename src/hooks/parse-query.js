@@ -35,7 +35,7 @@ function buildIncludes(m, models) {
   const parsed = {
     as: m.$as,
     model: models[m.model],
-    attributes: m.$select,
+    attributes: m.$select ? m.$select : { exclude: ['password'] },
     include: typeof m.$include === 'object' ? m.$include.map((include) => buildIncludes(include, models)) : [],
     where: m.where,
     raw: false
