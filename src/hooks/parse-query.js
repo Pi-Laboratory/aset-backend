@@ -37,6 +37,7 @@ function buildIncludes(m, models) {
     model: models[m.model],
     attributes: m.$select,
     include: typeof m.$include === 'object' ? m.$include.map((include) => buildIncludes(include, models)) : [],
+    where: m.where,
     raw: false
   };
   return parsed;
