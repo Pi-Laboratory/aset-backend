@@ -9,22 +9,31 @@ module.exports = (options = {}) => {
       const query = context.params.query;
       if (typeof query.$include === 'object') {
         context.params.sequelize = {
+          distinct: query.$distinct,
+          as: query.$as,
           include: typeof query.$include === 'object' ? query.$include.map((include) => buildIncludes(include, sequelize.models)) : undefined,
           raw: false
         };
         delete context.params.query.$include;
+        delete context.params.query.$as;
+        delete context.params.query.$distinct;
       }
     }
+    if (!context.params.provider)
+      delete context.params.sequelize;
+
     return context;
   };
 };
 
 function buildIncludes(m, models) {
   if (m.model === 'users') {
-    if (m.$select.indexOf('password') !== -1)
-      delete m.$select[m.$select.indexOf('password')];
+    if (m.$select)
+      if (m.$select.indexOf('password') !== -1)
+        delete m.$select[m.$select.indexOf('password')];
   }
   const parsed = {
+    as: m.$as,
     model: models[m.model],
     attributes: m.$select,
     include: typeof m.$include === 'object' ? m.$include.map((include) => buildIncludes(include, models)) : [],
