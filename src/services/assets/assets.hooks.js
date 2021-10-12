@@ -2,12 +2,14 @@ const { authenticate } = require('@feathersjs/authentication').hooks;
 
 const populateCreatedBy = require('../../hooks/populate-created-by');
 
+const populateAssetCode = require('../../hooks/populate-asset-code');
+
 module.exports = {
   before: {
     all: [ authenticate('jwt') ],
     find: [],
     get: [],
-    create: [populateCreatedBy()],
+    create: [populateCreatedBy(), populateAssetCode()],
     update: [],
     patch: [],
     remove: []

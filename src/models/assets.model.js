@@ -6,20 +6,14 @@ const DataTypes = Sequelize.DataTypes;
 module.exports = function (app) {
   const sequelizeClient = app.get('sequelizeClient');
   const assets = sequelizeClient.define('assets', {
-    quantity_good: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      defaultValue: 0
+    code: {
+      type: DataTypes.STRING,
+      allowNull: false
     },
-    quantity_mild: {
-      type: DataTypes.INTEGER,
+    quality: {
+      type: DataTypes.ENUM('good', 'mild', 'severe'),
       allowNull: false,
-      defaultValue: 0
-    },
-    quantity_severe: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      defaultValue: 0
+      defaultValue: 'good'
     }
   }, {
     hooks: {

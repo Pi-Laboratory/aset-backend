@@ -25,9 +25,9 @@ module.exports = function (app) {
             type: 'boolean',
             description: 'Status diterima'
           },
-          quantity: {
+          description: {
             type: 'integer',
-            description: 'Jumlah transfer'
+            description: 'Keterangan'
           },
           transfer_type_id: {
             type: 'integer',

@@ -8,9 +8,31 @@ module.exports = function (app) {
     Model: createModel(app),
     paginate: app.get('paginate')
   };
-
+  const majors = new Majors(options, app);
+  majors.docs = {
+    description: 'Service untuk entitas jurusan',
+    definitions: {
+      'majors_list': {
+        $ref: '#/definitions/majors'
+      },
+      majors: {
+        type: 'object',
+        required: [],
+        properties: {
+          code: {
+            type: 'string',
+            description: 'Kode jurusan'
+          },
+          name: {
+            type: 'string',
+            description: 'Nama jurusan'
+          }
+        }
+      }
+    }
+  };
   // Initialize our service with any options it requires
-  app.use('/majors', new Majors(options, app));
+  app.use('/majors', majors);
 
   // Get our initialized service so that we can register hooks
   const service = app.service('majors');

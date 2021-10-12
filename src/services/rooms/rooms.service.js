@@ -21,6 +21,10 @@ module.exports = function (app) {
         type: 'object',
         required: [],
         properties: {
+          code: {
+            type: 'string',
+            description: 'Kode Ruang'
+          },
           name: {
             type: 'string',
             description: 'Nama Ruang'

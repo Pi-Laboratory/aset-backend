@@ -37,9 +37,13 @@ module.exports = function (app) {
             type: 'object',
             description: 'Spesifikasi tipe'
           },
-          attributes: {
+          properties: {
             type: 'object',
-            description: 'Atribut tipe'
+            description: 'Properti tipe'
+          },
+          format: {
+            type: 'string',
+            description: 'Format penomoran item aset ({mon}, {year}, {room}, {major}). Contoh : {mon}/{major}/{room}'
           }
         }
       }

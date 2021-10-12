@@ -17,14 +17,6 @@ module.exports = function (app) {
       allowNull: false,
       defaultValue: false
     },
-    quantity: {
-      type: DataTypes.INTEGER,
-      allowNull: false
-    },
-    type: {
-      type: DataTypes.ENUM(['good', 'mild', 'severe']),
-      allowNull: false
-    },
     description: {
       type: DataTypes.TEXT,
       allowNull: true

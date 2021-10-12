@@ -6,10 +6,14 @@ const DataTypes = Sequelize.DataTypes;
 module.exports = function (app) {
   const sequelizeClient = app.get('sequelizeClient');
   const rooms = sequelizeClient.define('rooms', {
-    name: {
+    code: {
       type: DataTypes.STRING,
       allowNull: false
     },
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false
+    }
   }, {
     hooks: {
       beforeCount(options) {

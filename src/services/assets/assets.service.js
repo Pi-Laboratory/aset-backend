@@ -21,17 +21,9 @@ module.exports = function (app) {
         type: 'object',
         required: [],
         properties: {
-          quantity_good: {
-            type: 'integer',
-            description: 'Jumlah (keadaan baik)'
-          },
-          quantity_mild: {
-            type: 'integer',
-            description: 'Jumlah (keadaan rusak ringan)'
-          },
-          quantity_severe: {
-            type: 'integer',
-            description: 'Jumlah (keadaan rusak berat)'
+          quality: {
+            type: 'string',
+            description: 'Keadaan (good, mild, severe)'
           },
           room_id: {
             type: 'integer',

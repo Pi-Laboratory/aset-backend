@@ -25,6 +25,10 @@ module.exports = function (app) {
     properties: {
       type: DataTypes.JSONB,
       allowNull: false
+    },
+    format: {
+      type: DataTypes.STRING, // Token : {mon}, {year}, {room}, {major}
+      allowNull: false
     }
   }, {
     hooks: {
