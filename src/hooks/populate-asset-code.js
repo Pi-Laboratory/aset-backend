@@ -29,7 +29,7 @@ module.exports = (options = {}) => {
       .replace('{year}', moment().format('YYYY'))
       .replace('{room}', room.code)
       .replace('{major}', major.code)
-      .replace('{seq}', pad(seq, 4))
+      .replace('{seq}', pad(seq, 4));
 
     return context;
   };

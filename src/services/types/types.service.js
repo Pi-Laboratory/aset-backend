@@ -43,7 +43,7 @@ module.exports = function (app) {
           },
           format: {
             type: 'string',
-            description: 'Format penomoran item aset ({mon}, {year}, {room}, {major}). Contoh : {mon}/{major}/{room}'
+            description: 'Format penomoran item aset ({type}, {mon}, {year}, {room}, {major}, {seq}). Contoh : {mon}/{major}/{room}'
           }
         }
       }
