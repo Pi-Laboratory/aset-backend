@@ -20,7 +20,7 @@ module.exports = (options = {}) => {
           id: -1
         },
         type_id: type.id,
-        room_id: result.to_id
+//        room_id: result.to_id
       }
     });
     const seq = assets.data[0] ? assets.data[0].id + 1 : 1;
