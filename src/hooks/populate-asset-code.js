@@ -15,7 +15,7 @@ module.exports = (options = {}) => {
           id: -1
         },
         type_id: data.type_id,
-        room_id: data.room_id
+//        room_id: data.room_id
       }
     });
     const type = await app.service('types').get(data.type_id);
