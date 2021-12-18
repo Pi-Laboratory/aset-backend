@@ -4,6 +4,8 @@ const transferAsset = require('../../hooks/transfer-asset');
 
 const populateCreatedBy = require('../../hooks/populate-created-by');
 
+const autoConfirmTransfer = require('../../hooks/auto-confirm-transfer');
+
 module.exports = {
   before: {
     all: [ authenticate('jwt') ],
@@ -19,7 +21,7 @@ module.exports = {
     all: [],
     find: [],
     get: [],
-    create: [],
+    create: [autoConfirmTransfer()],
     update: [],
     patch: [transferAsset()],
     remove: []

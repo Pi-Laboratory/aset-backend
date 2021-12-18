@@ -25,6 +25,10 @@ module.exports = function (app) {
             type: 'string',
             description: 'Keadaan (good, mild, severe)'
           },
+          properties: {
+            type: 'object',
+            description: 'Detail aset'
+          },
           room_id: {
             type: 'integer',
             description: 'ID divisi'

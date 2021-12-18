@@ -14,6 +14,11 @@ module.exports = function (app) {
       type: DataTypes.ENUM('good', 'mild', 'severe'),
       allowNull: false,
       defaultValue: 'good'
+    },
+    properties: {
+      type: DataTypes.JSONB,
+      allowNull: false,
+      defaultValue: {}
     }
   }, {
     hooks: {
