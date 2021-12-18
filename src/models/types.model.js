@@ -14,18 +14,6 @@ module.exports = function (app) {
       type: DataTypes.STRING,
       allowNull: false
     },
-    price: {
-      type: DataTypes.INTEGER,
-      allowNull: false
-    },
-    specifications: {
-      type: DataTypes.JSONB,
-      allowNull: false
-    },
-    properties: {
-      type: DataTypes.JSONB,
-      allowNull: false
-    },
     format: {
       type: DataTypes.STRING, // Token : {mon}, {year}, {room}, {major}
       allowNull: false

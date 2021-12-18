@@ -25,9 +25,21 @@ module.exports = function (app) {
             type: 'string',
             description: 'Keadaan (good, mild, severe)'
           },
-          properties: {
-            type: 'object',
-            description: 'Detail aset'
+          price: {
+            type: 'integer',
+            description: 'Harga',
+          },
+          name: {
+            type: 'string',
+            description: 'Nama aset'
+          },
+          origin: {
+            type: 'string',
+            description: 'Asal perolehan'
+          },
+          acquisition_date: {
+            type: 'string',
+            description: 'Tanggal perolehan'
           },
           room_id: {
             type: 'integer',

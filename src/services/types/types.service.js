@@ -29,18 +29,6 @@ module.exports = function (app) {
             type: 'string',
             description: 'Nama tipe'
           },
-          price: {
-            type: 'integer',
-            description: 'Harga tipe'
-          },
-          specifications: {
-            type: 'object',
-            description: 'Spesifikasi tipe'
-          },
-          properties: {
-            type: 'object',
-            description: 'Properti tipe'
-          },
           format: {
             type: 'string',
             description: 'Format penomoran item aset ({type}, {mon}, {year}, {room}, {major}, {seq}). Contoh : {mon}/{major}/{room}'

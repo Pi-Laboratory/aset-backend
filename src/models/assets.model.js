@@ -15,10 +15,21 @@ module.exports = function (app) {
       allowNull: false,
       defaultValue: 'good'
     },
-    properties: {
-      type: DataTypes.JSONB,
+    price: {
+      type: DataTypes.DECIMAL,
       allowNull: false,
-      defaultValue: {}
+    },
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    origin: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    acquisition_date: {
+      type: DataTypes.DATEONLY,
+      allowNull: false
     }
   }, {
     hooks: {
