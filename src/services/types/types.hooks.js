@@ -4,13 +4,13 @@ const populateCreatedBy = require('../../hooks/populate-created-by');
 
 module.exports = {
   before: {
-    all: [ authenticate('jwt') ],
+    all: [ ],
     find: [],
     get: [],
-    create: [populateCreatedBy()],
-    update: [],
-    patch: [],
-    remove: []
+    create: [authenticate('jwt') , populateCreatedBy()],
+    update: [authenticate('jwt') ],
+    patch: [authenticate('jwt') ],
+    remove: [authenticate('jwt') ]
   },
 
   after: {
