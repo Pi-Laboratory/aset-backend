@@ -6,13 +6,13 @@ const populateAssetCode = require('../../hooks/populate-asset-code');
 
 module.exports = {
   before: {
-    all: [ authenticate('jwt') ],
+    all: [],
     find: [],
     get: [],
-    create: [populateCreatedBy(), populateAssetCode()],
-    update: [],
-    patch: [],
-    remove: []
+    create: [ authenticate('jwt'), populateCreatedBy(), populateAssetCode()],
+    update: [ authenticate('jwt') ],
+    patch: [ authenticate('jwt') ],
+    remove: [ authenticate('jwt') ]
   },
 
   after: {
