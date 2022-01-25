@@ -32,6 +32,10 @@ module.exports = function (app) {
           to_date: {
             type: 'string',
             description: 'Tanggal Selesai Sewa'
+          },
+          verified_by: {
+            type: 'integer',
+            description: 'ID pengguna yang memverifikasi'
           }
         }
       }

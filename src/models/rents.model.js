@@ -10,6 +10,10 @@ module.exports = function (app) {
       type: DataTypes.STRING,
       allowNull: false
     },
+    phone: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
     from_date: {
       type: DataTypes.DATEONLY,
       allowNull: false
@@ -17,7 +21,7 @@ module.exports = function (app) {
     to_date: {
       type: DataTypes.DATEONLY,
       allowNull: false
-    }
+    },
   }, {
     hooks: {
       beforeCount(options) {
@@ -29,6 +33,7 @@ module.exports = function (app) {
   // eslint-disable-next-line no-unused-vars
   rents.associate = function (models) {
     rents.hasMany(models.rent_list, { onDelete: 'cascade' });
+    rents.belongsTo(models.users, { onDelete: 'cascade', as: 'verified_by' });
     // Define associations here
     // See https://sequelize.org/master/manual/assocs.html
   };
