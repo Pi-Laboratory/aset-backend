@@ -35,7 +35,7 @@ module.exports = function (app) {
 
   // eslint-disable-next-line no-unused-vars
   users.associate = function (models) {
-    users.belongsTo(models.rooms, { onDelete: 'cascade' });
+    users.belongsTo(models.majors, { onDelete: 'cascade' });
   };
 
   return users;

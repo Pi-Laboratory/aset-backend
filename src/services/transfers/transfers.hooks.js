@@ -8,10 +8,10 @@ const autoConfirmTransfer = require('../../hooks/auto-confirm-transfer');
 
 module.exports = {
   before: {
-    all: [ authenticate('jwt') ],
+    all: [authenticate('jwt')],
     find: [],
     get: [],
-    create: [populateCreatedBy()],
+    create: [populateCreatedBy(), autoConfirmTransfer()],
     update: [],
     patch: [],
     remove: []
@@ -21,7 +21,7 @@ module.exports = {
     all: [],
     find: [],
     get: [],
-    create: [autoConfirmTransfer()],
+    create: [],
     update: [],
     patch: [transferAsset()],
     remove: []

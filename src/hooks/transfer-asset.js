@@ -19,8 +19,7 @@ module.exports = (options = {}) => {
         $sort: {
           id: -1
         },
-        type_id: type.id,
-//        room_id: result.to_id
+        type_id: type.id
       }
     });
     const seq = assets.data[0] ? assets.data[0].id + 1 : 1;
