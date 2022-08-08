@@ -28,7 +28,7 @@ module.exports = (options = {}) => {
     if (!type_sequence) {
       type_sequence = await app.service('sequences').create({ current: 1, type_id: type.id });
     } else {
-      seq = type_sequence.current + 1;
+      seq = parseInt(type_sequence.current, 10) + 1;
       await app.service('sequences').patch(type_sequence.id, { current: seq });
     }
 
