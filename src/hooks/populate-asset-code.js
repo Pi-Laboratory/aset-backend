@@ -26,7 +26,7 @@ module.exports = (options = {}) => {
     let type_sequence = (await app.service('sequences').find({ query: { type_id: type.id } })).data[0];
 
     if (!type_sequence) {
-      type_sequence = await app.service('sequences').create({ current: 1 });
+      type_sequence = await app.service('sequences').create({ current: 1, type_id: type.id });
     } else {
       seq = type_sequence.current + 1;
       await app.service('sequences').patch(type_sequence.id, { current: seq });
