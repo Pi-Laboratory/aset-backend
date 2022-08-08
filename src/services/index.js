@@ -7,6 +7,7 @@ const transferTypes = require('./transfer_types/transfer_types.service.js');
 const majors = require('./majors/majors.service.js');
 const rents = require('./rents/rents.service.js');
 const rentList = require('./rent-list/rent-list.service.js');
+const sequences = require('./sequences/sequences.service.js');
 // eslint-disable-next-line no-unused-vars
 module.exports = function (app) {
   app.configure(users);
@@ -18,4 +19,5 @@ module.exports = function (app) {
   app.configure(majors);
   app.configure(rents);
   app.configure(rentList);
+  app.configure(sequences);
 };

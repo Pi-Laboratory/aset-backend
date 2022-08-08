@@ -15,14 +15,23 @@ module.exports = (options = {}) => {
           id: -1
         },
         type_id: data.type_id,
-//        room_id: data.room_id
+        //        room_id: data.room_id
       }
     });
     const type = await app.service('types').get(data.type_id);
     const room = await app.service('rooms').get(data.room_id);
     const major = await app.service('majors').get(room.major_id);
 
-    const seq = assets.data[0] ? assets.data[0].id + 1 : 1;
+    let seq = 1;
+    let type_sequence = (await app.service('sequences').find({ query: { type_id: type.id } })).data[0];
+
+    if (!type_sequence) {
+      type_sequence = await app.service('sequences').create({ current: 1 });
+    } else {
+      seq = type_sequence.current + 1;
+      await app.service('sequences').patch(type_sequence.id, { current: seq });
+    }
+
     context.data.code = type.format
       .replace('{type}', type.code)
       .replace('{mon}', moment().format('MMM').toUpperCase())

@@ -8,7 +8,8 @@ module.exports = function (app) {
   const assets = sequelizeClient.define('assets', {
     code: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      unique: true
     },
     quality: {
       type: DataTypes.ENUM('good', 'mild', 'severe'),
