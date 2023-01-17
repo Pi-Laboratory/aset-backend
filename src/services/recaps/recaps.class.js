@@ -12,23 +12,25 @@ exports.Recaps = class Recaps {
       SELECT T
         .code,
         A.NAME,
-        A.origin,
-        A.acquisition_date,
         A.type_id,
+        A.room_id,
         T.NAME AS TYPE,
-        ( SELECT COUNT ( * ) FROM assets WHERE NAME = A.NAME AND acquisition_date = A.acquisition_date AND type_id = A.type_id AND quality = 'good' ) good,
-        ( SELECT COUNT ( * ) FROM assets WHERE NAME = A.NAME AND acquisition_date = A.acquisition_date AND type_id = A.type_id AND quality = 'mild' ) mild,
-        ( SELECT COUNT ( * ) FROM assets WHERE NAME = A.NAME AND acquisition_date = A.acquisition_date AND type_id = A.type_id AND quality = 'severe' ) severe 
+        R.name AS room,
+        ( SELECT COUNT ( * ) FROM assets WHERE NAME = A.NAME AND type_id = A.type_id AND A.room_id = R.id AND quality = 'good' ) good,
+        ( SELECT COUNT ( * ) FROM assets WHERE NAME = A.NAME AND type_id = A.type_id AND A.room_id = R.id AND quality = 'mild' ) mild,
+        ( SELECT COUNT ( * ) FROM assets WHERE NAME = A.NAME AND type_id = A.type_id AND A.room_id = R.id AND quality = 'severe' ) severe 
       FROM
         assets
         A LEFT JOIN types T ON A.type_id = T.ID 
+        LEFT JOIN rooms R ON A.room_id = R.id
       GROUP BY
         T.code,
         T.NAME,
-        A.origin,
+        A.room_id,
         A.NAME,
-        A.acquisition_date,
-        A.type_id;
+        A.type_id,
+        R.name,
+        R.id;
     `, { type: sequelize.Sequelize.QueryTypes.SELECT });
     console.log(result);
     return result;
