@@ -14,11 +14,13 @@ exports.Recaps = class Recaps {
         A.NAME,
         A.type_id,
         A.room_id,
+        A.origin,
+        A.acquisition_date,
         T.NAME AS TYPE,
         R.name AS room,
-        ( SELECT COUNT ( * ) FROM assets WHERE NAME = A.NAME AND type_id = A.type_id AND A.room_id = R.id AND quality = 'good' ) good,
-        ( SELECT COUNT ( * ) FROM assets WHERE NAME = A.NAME AND type_id = A.type_id AND A.room_id = R.id AND quality = 'mild' ) mild,
-        ( SELECT COUNT ( * ) FROM assets WHERE NAME = A.NAME AND type_id = A.type_id AND A.room_id = R.id AND quality = 'severe' ) severe 
+        ( SELECT COUNT ( * ) FROM assets WHERE NAME = A.NAME AND origin = A.origin AND acquisition_date = A.acquisition_date AND type_id = A.type_id AND A.room_id = R.id AND quality = 'good' ) good,
+        ( SELECT COUNT ( * ) FROM assets WHERE NAME = A.NAME AND origin = A.origin AND acquisition_date = A.acquisition_date AND type_id = A.type_id AND A.room_id = R.id AND quality = 'mild' ) mild,
+        ( SELECT COUNT ( * ) FROM assets WHERE NAME = A.NAME AND origin = A.origin AND acquisition_date = A.acquisition_date AND type_id = A.type_id AND A.room_id = R.id AND quality = 'severe' ) severe 
       FROM
         assets
         A LEFT JOIN types T ON A.type_id = T.ID 
@@ -29,6 +31,8 @@ exports.Recaps = class Recaps {
         A.room_id,
         A.NAME,
         A.type_id,
+        A.origin,
+        A.acquisition_date,
         R.name,
         R.id;
     `, { type: sequelize.Sequelize.QueryTypes.SELECT });
